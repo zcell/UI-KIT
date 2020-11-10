@@ -57,7 +57,7 @@
                         <component props={this.$props} on={this.events}/>
                     </div>
                 );
-            }
+            } else return <div></div>
         },
     };
 </script>
@@ -70,7 +70,6 @@
         max-width: 400px;
         width: 100%;
         min-width: 100px;
-        /*padding-bottom: 18px;*/
 
         font-family: $Roboto;
 

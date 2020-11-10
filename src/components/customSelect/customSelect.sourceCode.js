@@ -1,4 +1,4 @@
-const searchMethod = `{ url: 'https://api.presentation.food.true-false.ru/api/public/shop/products',
+const searchMethod = `{ url: 'string',
                                headers: {},
                                field: 'items',
                                nameField: null,

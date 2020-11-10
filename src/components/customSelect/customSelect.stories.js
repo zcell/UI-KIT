@@ -167,7 +167,6 @@ export default {
                 params: {
                     search: null,
                 },
-                axios: null,
             },
             table: {
                 type: { summary: 'object' },

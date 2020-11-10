@@ -16,7 +16,6 @@ export default {
                     params: {
                         search: null,
                     },
-                    axios: null,
                 };
             },
         },

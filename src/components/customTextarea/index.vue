@@ -1,5 +1,5 @@
 <script>
-    import sanitize from '../../mixins/sanitize';
+    import { clearHtmlComments } from '../../helpers/base';
 
     export default {
         name: 'CustomTextarea',
@@ -35,11 +35,9 @@
             },
         },
 
-        mixins: [sanitize],
-
         methods: {
             input(e) {
-                this.$emit('input', this.clearHtmlComments(e));
+                this.$emit('input', clearHtmlComments(e));
             },
         },
 

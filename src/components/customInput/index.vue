@@ -1,14 +1,10 @@
 <script>
-    import sanitize from '../../mixins/sanitize';
     import Counter from './counter';
     import MaskedInput from 'vue-masked-input';
+    import { clearHtmlComments } from '../../helpers/base';
 
     export default {
         name: 'CustomInput',
-
-        mixins: [
-            sanitize,
-        ],
 
         components: {
             Counter,
@@ -104,7 +100,7 @@
                 this.$emit('blur', e);
             },
             input(e) {
-                this.$emit('input', this.clearHtmlComments(e));
+                this.$emit('input', clearHtmlComments(e));
             },
             getLabel(label) {
                 if (label) {
