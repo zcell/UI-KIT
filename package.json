@@ -1,7 +1,6 @@
 {
-  "name": "uikit",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@zcell/uikit",
+  "version": "0.1.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -47,5 +46,10 @@
     "not dead"
   ],
 
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcell/UI-KIT.git"
+  }
 }
