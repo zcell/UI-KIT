@@ -4363,7 +4363,7 @@ module.exports = function (it) {
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("159b");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("53ca");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("53ca");
 
 
 
@@ -4378,7 +4378,7 @@ var fieldExtractor = function fieldExtractor(structure, field) {
   var lastPos = -1;
 
   while ((nextField = nextField.slice(0, lastPos = (lastPos = (nextField || '').indexOf('.')) !== -1 ? lastPos : nextField.length)) !== '') {
-    fieldValue = Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(fieldValue) === 'object' && fieldValue !== null && fieldValue[nextField] !== undefined ? fieldValue[nextField] : null;
+    fieldValue = Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(fieldValue) === 'object' && fieldValue !== null && fieldValue[nextField] !== undefined ? fieldValue[nextField] : null;
     skipped += lastPos + 1;
     nextField = field.slice(skipped);
   }
@@ -4603,10 +4603,10 @@ module.exports = {
 /* harmony import */ var core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("498a");
 /* harmony import */ var core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("53ca");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("53ca");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("96cf");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("1da1");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("1da1");
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("5b1b");
 
 
@@ -4923,7 +4923,7 @@ function htmlToElement(html) {
     selectThis: function selectThis(fItem) {
       var _this3 = this;
 
-      return Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var id, _this3$selected, clone, selectedIdValue;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -5137,7 +5137,7 @@ function htmlToElement(html) {
     currSelected: function currSelected() {
       var _this6 = this;
 
-      if (['number', 'string'].includes(Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(this.selected))) {
+      if (['number', 'string'].includes(Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(this.selected))) {
         var clone = this.currItems.find(function (i) {
           return (i === null || i === void 0 ? void 0 : i[_this6.selectedField]) === _this6.selected;
         });
@@ -5236,7 +5236,7 @@ function htmlToElement(html) {
 /* harmony import */ var core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vue_babel_helper_vue_jsx_merge_props__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("2638");
 /* harmony import */ var _vue_babel_helper_vue_jsx_merge_props__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vue_babel_helper_vue_jsx_merge_props__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("5530");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("5530");
 /* harmony import */ var _singleSelect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("fd72");
 /* harmony import */ var _multiSelect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("a022");
 /* harmony import */ var _multiSearchSelect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("27ff");
@@ -5260,7 +5260,7 @@ function htmlToElement(html) {
     singleSearchSelect: _singleSearchSelect__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],
     multiSearchSelect: _multiSearchSelect__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]
   },
-  props: Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, _common__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].props), _searchMixin__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].props),
+  props: Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, _common__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].props), _searchMixin__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].props),
   data: function data() {
     var _this = this;
 
@@ -14634,11 +14634,11 @@ addToUnscopables(FIND_INDEX);
 /* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("2532");
 /* harmony import */ var core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("ade3");
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("5530");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("ade3");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("5530");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("96cf");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("1da1");
+/* harmony import */ var D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("1da1");
 /* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("f7fe");
 /* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("5b1b");
@@ -14695,7 +14695,7 @@ addToUnscopables(FIND_INDEX);
     fetchMethod: function fetchMethod(e) {
       var _this = this;
 
-      return Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
         var searchMethod, headers, query, url, response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -14733,7 +14733,7 @@ addToUnscopables(FIND_INDEX);
     asyncFind: function asyncFind(e) {
       var _this2 = this;
 
-      return Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      return Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
         var searchMethod, list, values;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -14759,7 +14759,7 @@ addToUnscopables(FIND_INDEX);
                   _this2.currItems = typeof _this2.searchCallback === 'function' ? _this2.searchCallback(values) : values.map(function (item) {
                     var _objectSpread2;
 
-                    return Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])(Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])({}, item), {}, (_objectSpread2 = {}, Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_objectSpread2, _this2.fields.value, item[searchMethod.nameField]), Object(D_Projects_storybook_stories_UiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_objectSpread2, _this2.fields.id, item[searchMethod.idField]), _objectSpread2));
+                    return Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])(Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])({}, item), {}, (_objectSpread2 = {}, Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_objectSpread2, _this2.fields.value, item[searchMethod.nameField]), Object(D_projects_TFUiKit_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_objectSpread2, _this2.fields.id, item[searchMethod.idField]), _objectSpread2));
                   });
                 }
 
@@ -18851,7 +18851,7 @@ var actionBlock_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var actionBlock = (actionBlock_component.exports);
-// CONCATENATED MODULE: ./src/main.js
+// CONCATENATED MODULE: ./src/libs.js
 
 
 
