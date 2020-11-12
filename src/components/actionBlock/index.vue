@@ -111,7 +111,7 @@ export default {
 
     render() {
         return (
-            <div class={`actionBlock ${this.disabled && 'actionBlock--disabled'}`}>
+            <div class={`actionBlock ${this.disabled ? 'actionBlock--disabled' : ''}`}>
                 <btn class="actionBlock__btn" type="success" onClick={() => this.save()}>
                     {this.successButtonText}
                 </btn>

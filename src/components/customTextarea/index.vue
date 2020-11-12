@@ -1,5 +1,27 @@
 <script>
-    import { clearHtmlComments } from '../../helpers/base';
+    import { clearHtmlComments } from '@/helpers/base';
+
+    const setResizeListeners = (el, minHeight = 90, maxHeight = 270) => {
+        const validateSize = height => {
+            if (height <= minHeight) return minHeight;
+            if (height >= maxHeight) return maxHeight;
+            return height;
+        };
+
+        const calcHeight = height => {
+            const style = getComputedStyle(el);
+            const borderWidth = parseInt(style.borderTopWidth) + parseInt(style.borderBottomWidth);
+
+            return validateSize(height + borderWidth);
+        };
+
+        el.style.height = `${calcHeight(el.scrollHeight)}px`;
+
+        el.addEventListener('input', () => {
+            el.style.height = 'auto';
+            el.style.height = `${calcHeight(el.scrollHeight)}px`;
+        });
+    };
 
     export default {
         name: 'CustomTextarea',
@@ -16,12 +38,12 @@
 
             minHeight: {
                 type: Number,
-                default: 96,
+                default: 95,
             },
 
             maxHeight: {
                 type: Number,
-                default: 475,
+                default: 275,
             },
 
             placeholder: {
@@ -35,6 +57,10 @@
             },
         },
 
+        mounted() {
+            setResizeListeners(this.$refs.textarea, this.minHeight, this.maxHeight);
+        },
+
         methods: {
             input(e) {
                 this.$emit('input', clearHtmlComments(e));
@@ -45,21 +71,14 @@
             return (
                 <label class="textArea">
                     {this.label}
-                    <textarea-autosize
-                        class={`textArea__textarea ${
-                            typeof this.value === 'string' &&
-                            this.value.length > 0
-                                ? 'textArea__textarea--success'
-                                : ''
-                        }`}
+                    <textarea
+                        class={`textArea__textarea ${typeof this.value === 'string' && this.value.length > 0 ? 'textArea__textarea--success' : ''}`}
                         placeholder={this.placeholder}
                         disabled={this.readonly}
                         value={this.value}
                         onInput={e => this.input(e)}
-                        min-height={this.minHeight}
-                        max-height={this.maxHeight}
+                        ref="textarea"
                     />
-
                 </label>
             );
         },

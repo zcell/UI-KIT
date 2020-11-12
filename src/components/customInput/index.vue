@@ -1,7 +1,7 @@
 <script>
     import Counter from './counter';
-    import MaskedInput from 'vue-masked-input';
-    import { clearHtmlComments } from '../../helpers/base';
+    import { clearHtmlComments } from '@/helpers/base';
+    import MaskedInput from './maskedInput';
 
     export default {
         name: 'CustomInput',
@@ -168,6 +168,7 @@
                     //
                 },
             },
+
             propValue() {
                 if ([null, undefined].includes(this.value) === false) {
                     return this.value;
@@ -325,9 +326,9 @@
         }
 
         /*&--select.isSuccess{
-            border: 1px solid transparent;
-            background-color: $graySoft;
-        }*/
+      border: 1px solid transparent;
+      background-color: $graySoft;
+  }*/
 
         &--select.isOpen.isSuccess &__input[readonly='readonly'] {
             color: $mainText;
@@ -422,7 +423,7 @@
             &[readonly],
             &[disabled] {
                 /*         background-color: $graySoft;
-                border-color: $inputBorder;*/
+      border-color: $inputBorder;*/
                 cursor: default;
                 /*color: #b1b4b8;*/
             }

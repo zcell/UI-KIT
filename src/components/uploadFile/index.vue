@@ -262,7 +262,7 @@
         render() {
             return (
                 <div
-                    class={`uploadFile ${this.multiple && 'uploadFile--multiple'} ${this.disabled && 'uploadFile--disabled'}`}>
+                    class={`uploadFile ${this.multiple ? 'uploadFile--multiple' : ''} ${this.disabled ? 'uploadFile--disabled' : ''}`}>
                     {this.label && <span class="uploadFile__label">{this.label}</span>}
                     <div class="uploadFile__dropArea" ref="dropArea">
                         {this.isFileLoaded ? (
@@ -330,7 +330,7 @@
                                     disabled={this.disabled}
                                 />
                                 <btn
-                                    class={`uploadFile__button btn--green ${this.isUploading && 'btn--isUploading'}`}
+                                    class={`uploadFile__button btn--green ${this.isUploading ? 'btn--isUploading' : ''}`}
                                     onClick={() => this.$refs.input.click()}>
                                     {this.$slots.button ? this.$slots.button : 'Выбрать'}
                                 </btn>
