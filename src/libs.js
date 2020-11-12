@@ -7,5 +7,6 @@ import UploadFile from './components/uploadFile';
 import UploadImage from './components/uploadImage';
 import Pagination from './components/pagination';
 import ActionBlock from './components/actionBlock';
+import MainNav from './components/mainNav';
 
-export { Btn, Checkbox, CustomInput, CustomSelect, CustomTextarea, UploadFile, UploadImage, Pagination, ActionBlock };
+export { Btn, Checkbox, CustomInput, CustomSelect, CustomTextarea, UploadFile, UploadImage, Pagination, ActionBlock, MainNav };
