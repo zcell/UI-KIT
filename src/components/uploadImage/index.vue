@@ -1,6 +1,5 @@
 <script>
     import draggable from 'vuedraggable';
-    // import magicMixin from '../../mixins/magicMixin';
 
     export default {
         name: 'UploadImage',
@@ -112,7 +111,6 @@
 
                         const sendMethod = async () => {
                             const response = await fetch(this.url, {
-                                // credentials: 'include',
                                 headers: this.curHeaders,
                                 method: 'POST',
                                 body: formData,

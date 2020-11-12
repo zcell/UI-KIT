@@ -1,6 +1,6 @@
 {
   "name": "@zcell/uikit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,37 +10,20 @@
   "main": "./dist/uikit.common.js",
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
     "lodash.debounce": "^4.0.8",
+    "vue": "^2.6.11",
     "vue-masked-input": "^0.5.2",
+    "vue-router": "^3.4.9",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.13.0",
-    "eslint-plugin-vue": "^7.1.0",
     "node-sass": "^4.12.0",
+    "prettier": "^2.1.2",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
-
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-
   "browserslist": [
     "> 1%",
     "last 2 versions",
@@ -52,5 +35,17 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zcell/UI-KIT.git"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "vueIndentScriptAndStyle": true,
+    "bracketSpacing": true,
+    "endOfLine": "crlf",
+    "printWidth": 150,
+    "arrowParens": "avoid"
   }
 }

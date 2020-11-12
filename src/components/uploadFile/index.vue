@@ -192,7 +192,6 @@
 
             async uploadFiles(files) {
                 this.clearError();
-                // this.curFiles = [];
                 let promiseList = [];
 
                 this.curFiles = (Array.isArray(files) && files.length > 0) ? [] : this.curFiles;
@@ -211,7 +210,6 @@
 
                         const sendMethod = async () => {
                             const response = await fetch(this.url, {
-                                // credentials: 'include',
                                 headers: this.headers,
                                 method: 'POST',
                                 body: formData,
