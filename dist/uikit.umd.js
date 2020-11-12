@@ -4633,11 +4633,13 @@ module.exports = {
 
 
 function htmlToElement(html) {
-  var template = document.createElement('template');
-  html = html.trim(); // Never return a text node of whitespace as the result
+  if (process.browser) {
+    var template = document.createElement('template');
+    html = html.trim(); // Never return a text node of whitespace as the result
 
-  template.innerHTML = html;
-  return template.content.firstChild;
+    template.innerHTML = html;
+    return template.content.firstChild;
+  }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -4731,7 +4733,9 @@ function htmlToElement(html) {
     }
   },
   destroyed: function destroyed() {
-    document.removeEventListener('click', this.clickOutside);
+    if (process.browser) {
+      document.removeEventListener('click', this.clickOutside);
+    }
   },
   data: function data() {
     return {
