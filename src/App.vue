@@ -3,7 +3,7 @@
         <batch-module :tabs="batchTabs" />
         <custom-input v-model="inputValue" @focus="log('focus')" />
 
-        <default-heading :title="'Title'" :is-clear-cache="true" client-url="123" />
+        <default-heading :title="'Title'" :cache-params="{status: true}" client-url="123" />
 
         <main-nav :items="navItems">
             <template #logo>

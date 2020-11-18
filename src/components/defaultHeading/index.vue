@@ -11,6 +11,13 @@
             cacheParams: {
                 type: Object,
                 default: null,
+                validator(value) {
+                    return (
+                        ((value.hasOwnProperty('url') && typeof value.url === 'string') || value.hasOwnProperty('url') === false) &&
+                        ((value.hasOwnProperty('headers') && value.headers.toString() === '[object Object]') ||
+                            value.hasOwnProperty('headers') === false)
+                    );
+                },
             },
 
             clientUrl: {
@@ -21,8 +28,8 @@
 
         methods: {
             async clearCache() {
-                if (this.btnCacheParams.status) {
-                    await fetch(this.cacheParams.url, { method: 'delete', headers: this.cacheParams.head })
+                if (this.cacheParams?.url) {
+                    await fetch(this.cacheParams.url, { method: 'delete', headers: this.cacheParams.headers })
                         .then(resp => {
                             if (resp.status === 200) {
                                 this.$emit('cacheClearedSuccess');
@@ -40,17 +47,6 @@
             },
         },
 
-        computed: {
-            btnCacheParams() {
-                const defaultParams = {
-                    status: true,
-                    url: 'system/cache',
-                    headers: {},
-                };
-                return { ...defaultParams, ...this.cacheParams };
-            }
-        },
-
         render() {
             return (
                 <div class="defaultHeading">
@@ -60,7 +56,7 @@
                         {this.$slots.heading && <div class="defaultHeading__headSlotItems">{this.$slots.heading}</div>}
 
                         <div class="defaultHeading__buttonsWrapper">
-                            {this.btnCacheParams.status && (
+                            {this.cacheParams?.url && (
                                 <button
                                     type="button"
                                     class="defaultHeading__btn editBtn--headingBtn"
