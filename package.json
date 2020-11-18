@@ -6,7 +6,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build-lib": "vue-cli-service build --target lib --name uikit src/libs.js",
-    "publish-lib": ""
+    "publish-lib": "npm publish && npm version patch"
   },
   "main": "./dist/uikit.common.js",
   "dependencies": {
