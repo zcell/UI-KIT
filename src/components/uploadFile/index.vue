@@ -23,7 +23,6 @@
                 default: 8192,
             },
 
-
             headers: {
                 type: Object,
                 default: null,
@@ -62,7 +61,7 @@
                 dropArea: null,
                 isUploading: false,
                 internalError: null,
-                curHeaders: { 'accept': 'application/json, text/plain, */*', ...this.headers },
+                curHeaders: { accept: 'application/json, text/plain, */*', ...this.headers },
                 typesMatches: [
                     { mimeTypes: ['image/jpg'], type: 'jpg' },
                     { mimeTypes: ['image/jpeg'], type: 'jpeg' },
@@ -194,14 +193,13 @@
                 this.clearError();
                 let promiseList = [];
 
-                this.curFiles = (Array.isArray(files) && files.length > 0) ? [] : this.curFiles;
+                this.curFiles = Array.isArray(files) && files.length > 0 ? [] : this.curFiles;
 
                 Array.prototype.forEach.call(files, item => {
                     const arrayedFileName = item.name.split('.');
                     const nameOnly = arrayedFileName.slice(0, -1).join('.');
                     const itemType = this.typesMatches.find(type => type.mimeTypes.includes(item.type))?.type;
                     const limitationFileSize = this.maxSizeKbyte ? item.size <= this.maxSizeKbyte * 1024 : true;
-
 
                     if (itemType && this.allowedTypes.includes(itemType) && limitationFileSize) {
                         const formData = new FormData();
@@ -261,8 +259,7 @@
 
         render() {
             return (
-                <div
-                    class={`uploadFile ${this.multiple ? 'uploadFile--multiple' : ''} ${this.disabled ? 'uploadFile--disabled' : ''}`}>
+                <div class={`uploadFile ${this.multiple ? 'uploadFile--multiple' : ''} ${this.disabled ? 'uploadFile--disabled' : ''}`}>
                     {this.label && <span class="uploadFile__label">{this.label}</span>}
                     <div class="uploadFile__dropArea" ref="dropArea">
                         {this.isFileLoaded ? (
@@ -270,12 +267,10 @@
                                 {this.curFiles.map((file, index) => {
                                     return (
                                         <div class="uploadFile__preview">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 34"
-                                                 class="uploadFile__previewIcon">
-                                                <path fill="none" d="M-1-1h802v602H-1z"/>
-                                                <path
-                                                    d="M0 2C0 .9.9 0 2 0h22a2 2 0 012 2v30a2 2 0 01-2 2H2a2 2 0 01-2-2V2z"/>
-                                                <path fill="#fff" d="M5 16h16v1H5v-1zM5 20h16v1H5v-1zM5 24h11v1H5v-1z"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 34" class="uploadFile__previewIcon">
+                                                <path fill="none" d="M-1-1h802v602H-1z" />
+                                                <path d="M0 2C0 .9.9 0 2 0h22a2 2 0 012 2v30a2 2 0 01-2 2H2a2 2 0 01-2-2V2z" />
+                                                <path fill="#fff" d="M5 16h16v1H5v-1zM5 20h16v1H5v-1zM5 24h11v1H5v-1z" />
                                                 <text
                                                     stroke="#000"
                                                     transform="matrix(.33664 0 0 .33664 3.8 8.7)"
@@ -292,8 +287,7 @@
                                             </svg>
 
                                             <p class="uploadFile__name">{this.getFileName(file)}</p>
-                                            <button type="button" class="uploadFile__deleteBtn"
-                                                    onClick={() => this.deleteFile(index)}>
+                                            <button type="button" class="uploadFile__deleteBtn" onClick={() => this.deleteFile(index)}>
                                                 ×
                                             </button>
                                         </div>
@@ -302,10 +296,8 @@
                             </div>
                         ) : (
                             <div class="uploadFile__empty">
-                                <svg class="uploadFile__icon" width="16" height="16" viewBox="0 0 61 61"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M38.85 30.02c.92 0 1.65.58 1.79 1.42.2 1.05-.5 2-1.57 2.12l-.48.01H27.22c-.24 0-.48 0-.71-.06-.9-.24-1.45-1-1.35-1.9.08-.88.8-1.56 1.71-1.58.86-.02 1.73-.02 2.59-.02H38.85zM27.28 40.51h7.52c1.39 0 2.8.01 4.19-.01a1.7 1.7 0 001.68-1.67A1.74 1.74 0 0039.15 37c-.2-.03-.4-.03-.59-.03h-11.3c-.23 0-.47.02-.7.07-.78.15-1.36.84-1.39 1.63-.03.83.5 1.57 1.29 1.78.27.08.55.06.82.06z"/>
+                                <svg class="uploadFile__icon" width="16" height="16" viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M38.85 30.02c.92 0 1.65.58 1.79 1.42.2 1.05-.5 2-1.57 2.12l-.48.01H27.22c-.24 0-.48 0-.71-.06-.9-.24-1.45-1-1.35-1.9.08-.88.8-1.56 1.71-1.58.86-.02 1.73-.02 2.59-.02H38.85zM27.28 40.51h7.52c1.39 0 2.8.01 4.19-.01a1.7 1.7 0 001.68-1.67A1.74 1.74 0 0039.15 37c-.2-.03-.4-.03-.59-.03h-11.3c-.23 0-.47.02-.7.07-.78.15-1.36.84-1.39 1.63-.03.83.5 1.57 1.29 1.78.27.08.55.06.82.06z" />
                                     <path
                                         fill-rule="evenodd"
                                         clip-rule="evenodd"
@@ -335,9 +327,11 @@
                                     {this.$slots.button ? this.$slots.button : 'Выбрать'}
                                 </btn>
 
-                                {this.internalError &&
-                                <div class="uploadFile__errorMessage"
-                                     title={this.internalError.errors.file}>{this.errorMessage}</div>}
+                                {this.internalError && (
+                                    <div class="uploadFile__errorMessage" title={this.internalError.errors.file}>
+                                        {this.errorMessage}
+                                    </div>
+                                )}
                             </form>
                         )}
                     </div>
@@ -351,9 +345,12 @@
     @import '../../assets/globals';
 
     .uploadFile {
+        @import '../../assets/reset';
+
+        box-sizing: border-box;
 
         &--disabled {
-            opacity: .5;
+            opacity: 0.5;
             pointer-events: none;
         }
 
@@ -428,11 +425,12 @@
             margin: 0;
 
             background: transparent;
+            border: none;
             cursor: pointer;
             outline: none;
             font-size: 20px;
             line-height: 1;
-            color: rgba(0, 0, 0, .6);
+            color: rgba(0, 0, 0, 0.6);
 
             &:hover {
                 color: $red;

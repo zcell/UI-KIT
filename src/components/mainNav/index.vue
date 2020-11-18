@@ -1,4 +1,6 @@
 <script>
+    import debounce from 'lodash.debounce';
+
     export default {
         name: 'MainNav',
 
@@ -7,99 +9,130 @@
                 type: Array,
                 // required: true,
             },
+
+            contentSelector: {
+                type: String,
+                default: '.wrapper__content',
+            },
         },
 
         mounted() {
             if (process.browser) {
-                if ('onwheel' in document) {
-                    // IE9+, FF17+, Ch31+
-                    addEventListener('wheel', this.scrollWatcher);
-                } else if ('onmousewheel' in document) {
-                    // устаревший вариант события
-                    addEventListener('mousewheel', this.scrollWatcher);
-                }
+                window.addEventListener('resize', debounce(this.updateNav, 100));
+
+                this.updateNav();
             }
+        },
+
+        destroyed() {
+            window.removeEventListener('resize', this.updateNav);
         },
 
         data() {
             return {
-                translate: 0,
-                lastScrollTop: 0,
+                isMoreVisible: false,
+                visibleItems: JSON.parse(JSON.stringify(this.items)),
+                hiddenItems: [],
+                breaks: [],
             };
         },
 
-        computed: {
-            getTranslateValue() {
-                return `transform: translateY(${this.translate}px); transition: transform .3s ease-in-out;`;
-            },
-        },
-
         methods: {
-            scrollWatcher() {
-                const clientHeight = document.documentElement.clientHeight;
-                const pageYOffset = window.pageYOffset;
-                const mainNavWrapper = document.querySelector('.mainNav__wrapper');
-                const bodyHeight = document.querySelector('body').getBoundingClientRect().height;
+            clickOutside(e) {
+                if (e.target.closest('.navList__item--more') === null && this.needClickOutside) {
+                    this.hideMoreVisible();
+                }
+            },
 
-                if (mainNavWrapper && typeof bodyHeight === 'number' && typeof clientHeight === 'number' && typeof pageYOffset === 'number') {
-                    const pageScrollPercentValue = (pageYOffset * 100) / (bodyHeight - clientHeight);
-                    const wrapperBottom = mainNavWrapper.getBoundingClientRect().bottom;
-                    const extraNavHeight = clientHeight - mainNavWrapper.getBoundingClientRect().height;
-                    if (wrapperBottom) {
-                        const contentHeight = document.querySelector('.wrapper__content').getBoundingClientRect().height;
-                        if (typeof contentHeight === 'number' && contentHeight <= clientHeight) {
-                            mainNavWrapper.style.position = 'unset';
-                        } else {
-                            mainNavWrapper.style.position = '';
-                            if (pageYOffset === 0 || this.lastScrollTop > pageYOffset) {
-                                this.translate = 0;
-                            } else if (
-                                this.lastScrollTop < pageYOffset &&
-                                wrapperBottom > clientHeight &&
-                                pageYOffset !== bodyHeight - clientHeight
-                            ) {
-                                let translateValue = ((extraNavHeight * pageScrollPercentValue) / 100) * 3;
-                                if (translateValue < extraNavHeight) {
-                                    translateValue = extraNavHeight;
-                                }
-                                this.translate = translateValue;
-                            }
-                            // else if (pageYOffset === bodyHeight - clientHeight) {
-                            //     console.log(123)
-                            //     this.translate = extraNavHeight;
-                            // }
+            updateNav() {
+                const nav = this.$refs.nav;
+                const visibleList = this.$refs.visibleList;
+
+                const availableHeight = nav ? nav.clientHeight : 0;
+                const currentHeight = visibleList ? visibleList.clientHeight : 0;
+
+                if (currentHeight > availableHeight) {
+                    this.breaks.push(currentHeight);
+
+                    const removedItem = this.visibleItems.pop();
+
+                    if (removedItem) {
+                        this.hiddenItems.unshift(removedItem);
+                    }
+                } else {
+                    if (availableHeight > this.breaks[this.breaks.length - 1]) {
+                        const removedItem = this.hiddenItems.shift();
+
+                        if (removedItem) {
+                            this.visibleItems.push(removedItem);
                         }
-
-                        this.lastScrollTop = pageYOffset;
+                        this.breaks.pop();
                     }
                 }
+
+                if (currentHeight > availableHeight) {
+                    setTimeout(() => {
+                        this.updateNav();
+                    }, 5);
+                }
+            },
+
+            toggleMoreVisible() {
+                this.isMoreVisible = !this.isMoreVisible;
+            },
+
+            hideMoreVisible() {
+                this.isMoreVisible = false;
             },
         },
 
         render() {
+            const moreBtn = this.$slots.moreBtn ? this.$slots.moreBtn : 'Еще ➜';
+
             return (
                 <div class="mainNav">
-                    <div class="mainNav__wrapper" style={this.getTranslateValue}>
-                        <router-link class="mainNav__home" to={{ path: '' }}>
-                            <span class="mainNav__logo">{this.$slots.logo ? this.$slots.logo : 'Logo'}</span>
-                        </router-link>
+                    <router-link class="mainNav__home" to={{ path: '' }}>
+                        <span class="mainNav__logo">{this.$slots.logo ? this.$slots.logo : 'Logo'}</span>
+                    </router-link>
 
-                        <ul class="mainNav__list">
-                            {this.items &&
-                                this.items.map(item => {
+                    <div class="mainNav__wrapper" ref="nav">
+                        <ul class="mainNav__list" ref="visibleList">
+                            {this.visibleItems &&
+                                this.visibleItems.map(item => {
                                     return (
-                                        <li class="mainNav__listItem">
+                                        <li class="mainNav__listItem" ref="navItem">
                                             <router-link class="mainNav__link" to={item.to}>
-                                                {item.icon && <span class="mainNav__icon" domPropsInnerHTML={item.icon} />}
+                                                {item.icon && <img class="mainNav__icon" src={item.icon} alt="ico" />}
                                                 {item.text}
                                             </router-link>
                                         </li>
                                     );
                                 })}
-                        </ul>
 
-                        {this.$slots.default}
+                            {this.hiddenItems.length > 0 && (
+                                <li class="mainNav__listItem">
+                                    <button
+                                        class={`mainNav__link mainNav__link--more ${this.isMoreVisible ? 'is-active' : ''}`}
+                                        onClick={() => this.toggleMoreVisible()}>
+                                        {moreBtn}
+                                    </button>
+
+                                    <ul class={`mainNav__list mainNav__list--more ${this.isMoreVisible ? 'is-active' : ''}`}>
+                                        {this.hiddenItems.map(item => (
+                                            <li class="mainNav__listItem">
+                                                <router-link class="mainNav__link" to={item.to}>
+                                                    {item.icon && <img class="mainNav__icon" src={item.icon} alt="ico" />}
+                                                    {item.text}
+                                                </router-link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            )}
+                        </ul>
                     </div>
+
+                    {this.$slots.default}
                 </div>
             );
         },
@@ -110,6 +143,8 @@
     @import '../../assets/globals';
 
     .mainNav {
+        @import '../../assets/reset';
+
         position: relative;
         max-width: 90px;
         width: 90px;
@@ -117,7 +152,8 @@
         flex-direction: column;
         justify-content: flex-start;
         background-color: $graySoft;
-        min-height: 100vh;
+        //min-height: 100vh;
+        box-sizing: border-box;
 
         &:before {
             /*content: '';*/
@@ -135,30 +171,73 @@
             align-items: center;
             width: 100%;
             height: 90px;
+
             background-color: $mainGreen;
+            text-decoration: none;
         }
 
         &__wrapper {
             width: inherit;
-            position: fixed;
-            top: 0;
+            //position: fixed;
+            //top: 0;
             background-color: $graySoft;
+            height: 300px;
         }
 
         &__logo {
             width: 52px;
             height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            fill: $white;
+            color: $white;
+            fill: currentColor;
+            text-align: center;
+
+          svg  {
+            width: 100%;
+            height: 100%;
+
+            fill: currentColor;
+            color: inherit;
+          }
         }
 
         &__list {
+            position: relative;
             display: flex;
             flex-direction: column;
             padding: 0;
             margin: 0 0 40px;
 
             list-style: none;
+
+            &--more {
+                position: absolute;
+                bottom: 0;
+                left: calc(100% + 5px);
+                width: 100%;
+                margin: 0;
+
+                background: $graySoft;
+                box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-5px);
+
+                transition: opacity 0.12s 0.4s ease, transform 0.12s 0.4s ease, visibility 0.12s 0.4s ease;
+            }
+        }
+
+        &__list--more.is-active,
+        &__list--more:hover,
+        &__link--more:hover + &__list--more {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+
+            transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s ease;
         }
 
         &__listItem {
@@ -168,65 +247,10 @@
             align-items: center;
             width: 100%;
 
-            font-family: $Roboto;
-            transition: background-color ease 0.15s;
-            cursor: pointer;
+            font-family: $FontFamily;
 
             &--notify {
                 margin-top: auto;
-            }
-
-            &:hover {
-                background-color: $white;
-
-                .mainNav__icon {
-                    color: $mainGreen;
-
-                    svg {
-                        color: inherit;
-                        fill: currentColor;
-                    }
-                }
-
-                .mainNav__link {
-                    color: $mainGreen;
-                }
-            }
-
-            &--danger {
-                &:hover {
-                    background-color: $white;
-
-                    .mainNav__icon {
-                        color: darken($red, 10%);
-
-                        svg {
-                            color: inherit;
-                            fill: currentColor;
-                        }
-                    }
-
-                    .mainNav__link {
-                        color: darken($red, 10%);
-                    }
-                }
-            }
-        }
-
-        &__listItem.is-active {
-            background-color: $white;
-
-            .mainNav__icon {
-                color: $mainGreen;
-
-                svg {
-                    color: inherit;
-                    fill: currentColor;
-                }
-            }
-
-            .mainNav__link {
-                color: $mainGreen;
             }
         }
 
@@ -239,16 +263,7 @@
             height: 20px;
 
             color: $additionalText;
-            font-size: 18px;
-
-            transition: fill ease 0.15s;
-
-            svg {
-                width: 100%;
-                height: 100%;
-                color: inherit;
-                fill: currentColor;
-            }
+            font-size: 10px;
         }
 
         &__link {
@@ -259,13 +274,101 @@
             align-items: center;
             padding: 10px 0;
 
+            background: none;
+            border: none;
             font-size: 12px;
             font-weight: 400;
             color: $additionalText;
             text-align: center;
             text-decoration: none;
+            cursor: pointer;
 
-            transition: color ease 0.15s;
+            transition: background-color 0.15s ease, color 0.15s ease;
+
+            &.router-link-active,
+            &:hover {
+                background-color: $white;
+                color: $mainGreen;
+
+                .mainNav__icon {
+                    color: $mainGreen;
+
+                    svg {
+                        color: inherit;
+                        fill: currentColor;
+                    }
+                }
+            }
+
+            &--danger {
+                &:hover {
+                    background-color: $white;
+                    color: darken($red, 10%);
+
+                    .mainNav__icon {
+                        color: darken($red, 10%);
+
+                        svg {
+                            color: inherit;
+                            fill: currentColor;
+                        }
+                    }
+                }
+            }
+
+            &--more {
+                position: relative;
+
+                &:before,
+                &:after {
+                    content: '';
+                    position: absolute;
+                }
+
+                &:before {
+                    top: 6px;
+                    right: 6px;
+
+                    width: 3px;
+                    height: 5px;
+
+                    border: 1px solid $gray;
+                    border-left-color: transparent;
+                    border-radius: 50%;
+                    transform: translateY(-1px);
+                    //transform: rotate(-45deg);
+
+                    transition: transform 0.4s cubic-bezier(0.68, -3.55, 0.27, 3.55), border 0s 0.15s ease;
+                }
+
+                &:after {
+                    right: 5px;
+                    top: 9px;
+
+                    width: 7px;
+                    height: 6px;
+
+                    background: $gray;
+                    border-radius: 1px;
+                    box-sizing: border-box;
+
+                    transition: background 0.12s ease;
+                }
+
+                &.is-active {
+                    &:after {
+                        background: $mainGreen;
+                        transition: background 0.12s 0.35s ease;
+                    }
+
+                    &:before {
+                        transform: translateY(0);
+                        border-color: $mainGreen;
+
+                        transition: transform 0.4s cubic-bezier(0.68, -3, 0.27, 5), border 0.12s 0.35s ease;
+                    }
+                }
+            }
         }
     }
 </style>

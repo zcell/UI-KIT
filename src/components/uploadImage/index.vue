@@ -216,22 +216,20 @@
                                     ghost-class="uploadImage__ghost"
                                     onChange={() => this.update()}>
                                     {Array.isArray(this.curGallery) &&
-                                    this.curGallery.length > 0 &&
-                                    this.curGallery.map((image, index) => {
-                                        return (
-                                            <div class="uploadImage__galleryItem js-imageHandle" key={image.thumb}>
-                                                <img src={image?.thumb} alt="image" ref={this.generateID(image)}
-                                                     class="uploadImage__thumb"/>
+                                        this.curGallery.length > 0 &&
+                                        this.curGallery.map((image, index) => {
+                                            return (
+                                                <div class="uploadImage__galleryItem js-imageHandle" key={image.thumb}>
+                                                    <img src={image?.thumb} alt="image" ref={this.generateID(image)} class="uploadImage__thumb" />
 
-                                                {!this.disabled && (
-                                                    <button class="uploadImage__deleteImage"
-                                                            onClick={() => this.deleteImage(index)}>
-                                                        ×
-                                                    </button>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
+                                                    {!this.disabled && (
+                                                        <button class="uploadImage__deleteImage" onClick={() => this.deleteImage(index)}>
+                                                            ×
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
 
                                     {!this.disabled && Array.isArray(this.curGallery) && (
                                         <form
@@ -266,8 +264,7 @@
                                             </button>
                                         )}
 
-                                        <img src={this.curImage.thumb} ref={this.generateID(this.curImage)} alt="alt"
-                                             class="uploadImage__thumb"/>
+                                        <img src={this.curImage.thumb} ref={this.generateID(this.curImage)} alt="alt" class="uploadImage__thumb" />
                                     </div>
                                 )}
 
@@ -300,6 +297,10 @@
     @import '../../assets/globals';
 
     .uploadImage {
+        @import '../../assets/reset';
+
+        box-sizing: border-box;
+
         &--marginBottom {
             margin-bottom: 18px;
         }
@@ -342,6 +343,7 @@
             margin: 0;
 
             background: rgba(255, 255, 255, 0.3);
+            border: none;
             cursor: pointer;
             outline: none;
             font-size: 20px;
@@ -429,6 +431,7 @@
             padding: 0;
 
             background: none;
+            border: none;
             cursor: pointer;
         }
 

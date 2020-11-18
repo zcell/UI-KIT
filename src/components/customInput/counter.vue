@@ -97,8 +97,7 @@
                                 value: this.quantity,
                             });
                         }}>
-                        <svg class="counter__icon" width="10" height="2" viewBox="0 0 10 2" fill=""
-                             xmlns="http://www.w3.org/2000/svg">
+                        <svg class="counter__icon" width="10" height="2" viewBox="0 0 10 2" fill="" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 fill-rule="evenodd"
                                 clip-rule="evenodd"
@@ -108,7 +107,9 @@
                         </svg>
                     </button>
                     <label class="counter__item">
-                        <span class="visually-hidden" hidden>Counter</span>
+                        <span class="visually-hidden" hidden>
+                            Counter
+                        </span>
                         <input
                             type="number"
                             class="counter__field"
@@ -136,9 +137,8 @@
                                 value: this.quantity,
                             });
                         }}>
-                        <svg class="counter__icon" width="14" height="14" viewBox="0 0 14 14" fill=""
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill=""/>
+                        <svg class="counter__icon" width="14" height="14" viewBox="0 0 14 14" fill="" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="" />
                         </svg>
                     </button>
                 </div>
@@ -151,14 +151,16 @@
     @import '../../assets/globals';
 
     .counter {
+        @import '../../assets/reset';
         display: flex;
         align-items: stretch;
         justify-content: space-between;
         width: 90px;
         height: 36px;
+        box-sizing: border-box;
 
         background-color: $white;
-        font-family: $Roboto;
+        font-family: $FontFamily;
         border: 1px solid $gray;
         border-radius: 2px;
         overflow: hidden;

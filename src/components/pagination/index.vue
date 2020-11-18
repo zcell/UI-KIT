@@ -238,10 +238,15 @@
     @import '../../assets/globals';
 
     .pagination {
+        @import '../../assets/reset';
+
+        box-sizing: border-box;
+
         &__container {
             display: flex;
             justify-content: center;
             align-items: center;
+            box-sizing: border-box;
         }
 
         &__action-btn {
@@ -296,7 +301,7 @@
 
             background: $white;
             border: 1px solid #b1b4b8;
-            font-family: $Roboto;
+            font-family: $FontFamily;
             font-size: 14px;
             font-weight: 400;
             line-height: 1.3;

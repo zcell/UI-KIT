@@ -2,6 +2,7 @@
     import Counter from './counter';
     import { clearHtmlComments } from '@/helpers/base';
     import MaskedInput from './maskedInput';
+    import DatePicker from 'vue2-datepicker';
 
     export default {
         name: 'CustomInput',
@@ -9,6 +10,7 @@
         components: {
             Counter,
             MaskedInput,
+            DatePicker,
         },
 
         props: {
@@ -102,6 +104,7 @@
             input(e) {
                 this.$emit('input', clearHtmlComments(e));
             },
+
             getLabel(label) {
                 if (label) {
                     return <span class="input__labelText">{label}</span>;
@@ -189,7 +192,7 @@
         render() {
             return (
                 <div class={`input ${this.getClasses}`} onClick={() => this.$emit('click')}>
-                    {!['tel', 'number', 'file'].includes(this.type) && (
+                    {!['tel', 'number', 'file', 'date'].includes(this.type) && (
                         <label>
                             {this.getLabel(this.label)}
                             <div class="input__wrapper">
@@ -219,9 +222,7 @@
                                     class="input__input"
                                     v-model={this.curValue}
                                     mask={this.mask}
-                                    guide={true}
                                     placeholderChar="_"
-                                    keepCharPositions={false}
                                     onInput={e => {
                                         this.input(e);
                                     }}
@@ -247,7 +248,7 @@
                                 required={this.required}
                                 disabled={this.readonly}
                             />
-                            {this.getError(this.error)}
+                            <transition name="fade">{this.getError(this.error)}</transition>
                         </div>
                     )}
                     {this.type === 'file' && (
@@ -270,6 +271,25 @@
                             <transition name="fade">{this.getError(this.error)}</transition>
                         </div>
                     )}
+
+                    {this.type === 'date' && (
+                        <label class="input__wrapper">
+                            <date-picker
+                                class="datepicker__input"
+                                prefix-class="customDate"
+                                value={this.curValue}
+                                range-separator={'-'}
+                                placeholder={this.placeholder}
+                                onInput={e => this.$emit('input', e)}
+                                onFocus={() => this.focus()}
+                                onBlur={e => this.blur(e)}
+                                onChange={e => this.$emit('change', e)}
+                                props={this.$props}
+                                attrs={this.$attrs}
+                            />
+                            <transition name="fade">{this.getError(this.error)}</transition>
+                        </label>
+                    )}
                 </div>
             );
         },
@@ -278,13 +298,17 @@
 
 <style lang="scss">
     @import '../../assets/globals';
+    @import './date-picker';
 
     .input {
+        @import '../../assets/reset';
+
         position: relative;
         max-width: 400px;
         width: 100%;
+        box-sizing: border-box;
 
-        font-family: $Roboto;
+        font-family: $FontFamily;
         padding-bottom: 18px;
 
         &--marginBottom {
@@ -292,11 +316,13 @@
         }
 
         &.isError &__input,
+        &.isError .customDate-input,
         &.isError &__counter {
             border: 1px solid $red !important;
             background-color: $white !important;
         }
 
+        &.isError .customDate-input,
         &.isSuccess &__input {
             border: 1px solid $mainGreen;
             background-color: $white;
@@ -326,9 +352,9 @@
         }
 
         /*&--select.isSuccess{
-      border: 1px solid transparent;
-      background-color: $graySoft;
-  }*/
+border: 1px solid transparent;
+background-color: $graySoft;
+}*/
 
         &--select.isOpen.isSuccess &__input[readonly='readonly'] {
             color: $mainText;
@@ -356,6 +382,7 @@
             color: $red;
             font-weight: 400;
             line-height: 1.2;
+            text-align: left;
         }
 
         &__wrapper {
@@ -423,7 +450,7 @@
             &[readonly],
             &[disabled] {
                 /*         background-color: $graySoft;
-      border-color: $inputBorder;*/
+border-color: $inputBorder;*/
                 cursor: default;
                 /*color: #b1b4b8;*/
             }

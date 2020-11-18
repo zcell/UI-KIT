@@ -17,19 +17,10 @@
             return (
                 <div class="select__singleSelect" onKeydown={e => this.keyHandler(e)}>
                     <div
-                        class='input__wrapper'>
-                        <custom-input
-                            class={`select__input ${this.getInputClasses}`}
-                            label={this.label}
-                            readonly={this.readonly}
-                            ref="input"
-                            placeholder={this.placeholder}
-                            v-model={this.computedValue}
-                            error={this.error}
-                            onClearError={() => this.$emit('clearError')}
-                            onChange={() => this.onChange()}
-                            onClick={() => this.toggle()}
-                        />
+                        class="select__singleInner">
+                        <button class={`select__singleButton ${this.isOpen ? 'isOpen' : ''} ${this.error ? 'isError' : ''}`} onClick={() => this.toggle()}>
+                            {this.computedValue || this.placeholder}
+                        </button>
 
                         {this.renderIcon()}
 

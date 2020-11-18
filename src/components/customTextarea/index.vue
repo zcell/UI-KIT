@@ -63,7 +63,7 @@
 
         methods: {
             input(e) {
-                this.$emit('input', clearHtmlComments(e));
+                this.$emit('input', clearHtmlComments(e.target.value));
             },
         },
 
@@ -78,6 +78,7 @@
                         value={this.value}
                         onInput={e => this.input(e)}
                         ref="textarea"
+                        style={this.minHeight ? `min-height: ${this.minHeight}px` : ''}
                     />
                 </label>
             );
@@ -89,13 +90,16 @@
     @import '../../assets/globals';
 
     .textArea {
+        @import '../../assets/reset';
+
         display: flex;
         flex-direction: column;
         max-width: 400px;
         width: 100%;
         margin-bottom: 18px;
+        box-sizing: border-box;
 
-        font-family: $Roboto;
+        font-family: $FontFamily;
         font-weight: 400;
         font-size: 12px;
         color: #747678;
@@ -106,9 +110,10 @@
             background: $graySoft;
             border: 1px solid $inputBorder;
             border-radius: 2px;
-            font-family: $Roboto;
+            font-family: $FontFamily;
             color: $mainText;
             font-size: 12px;
+            resize: vertical;
 
             transition: background-color 0.1s ease, border 0.1s ease;
 

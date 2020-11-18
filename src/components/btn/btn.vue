@@ -80,6 +80,8 @@
     @import '../../assets/globals';
 
     .btn {
+        @import '../../assets/reset';
+
         position: relative;
         display: inline-flex;
         justify-content: center;
@@ -96,6 +98,7 @@
         background: $white;
         border: 1px solid $gray;
         border-radius: 100px;
+        box-sizing: border-box;
         color: #3d4248;
         cursor: pointer;
 

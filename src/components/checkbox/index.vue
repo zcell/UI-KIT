@@ -27,7 +27,10 @@
 
         render() {
             return (
-                <label class={`checkbox ${this.$attrs.value ? 'is-active' : ''} ${this.type ? 'checkbox--' + this.type : ''} ${this.disabled ? 'checkbox--disabled' : ''}`}>
+                <label
+                    class={`checkbox ${this.$attrs.value ? 'is-active' : ''} ${this.type ? 'checkbox--' + this.type : ''} ${
+                        this.disabled ? 'checkbox--disabled' : ''
+                    }`}>
                     <span class="checkbox__custom" />
 
                     <input
@@ -48,9 +51,12 @@
     @import '../../assets/globals';
 
     .checkbox {
+        @import '../../assets/reset';
+
         position: relative;
         display: block;
         padding-left: 16px;
+        box-sizing: border-box;
 
         min-height: 16px;
         font-size: 14px;
@@ -60,7 +66,7 @@
 
         &--disabled {
             pointer-events: none;
-            opacity: .6;
+            opacity: 0.6;
         }
 
         &--radio &__custom {
@@ -136,7 +142,7 @@
         }
 
         &--disabled &__custom {
-            background: rgba($gray, .2);
+            background: rgba($gray, 0.2);
         }
 
         &.is-active {

@@ -3,6 +3,7 @@
     import multiSelect from './multiSelect';
     import multiSearchSelect from './multiSearchSelect';
     import singleSearchSelect from './singleSearchSelect';
+    import customInput from '../customInput/index';
     import searchMixin from './searchMixin';
     import common from './common';
 
@@ -14,6 +15,7 @@
             multiSelect,
             singleSearchSelect,
             multiSearchSelect,
+            customInput,
         },
 
         props: {
@@ -54,10 +56,11 @@
             if (this.isClient) {
                 return (
                     <div class={`select select${this.id}`}>
-                        <component props={this.$props} on={this.events}/>
+                        <component props={this.$props} on={this.events} />
                     </div>
                 );
-            } else return <div></div>
+            } else
+                return <custom-input class={`select__input`} label={this.label} readonly={this.readonly} placeholder={this.placeholder} value="" />;
         },
     };
 </script>
@@ -66,15 +69,50 @@
     @import '../../assets/globals';
 
     .select {
+        @import '../../assets/reset';
         position: relative;
         max-width: 400px;
         width: 100%;
         min-width: 100px;
+        box-sizing: border-box;
 
-        font-family: $Roboto;
+        font-family: $FontFamily;
 
         &__inner {
             padding-bottom: 18px;
+        }
+
+        &__singleInner {
+            padding-bottom: 18px;
+        }
+
+        &__singleButton {
+            width: 100%;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 10px;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+            border-radius: 2px;
+            border: 1px solid $inputBorder;
+            background-color: $graySoft;
+            color: $mainText;
+            font-size: 12px;
+            box-shadow: none;
+
+            transition: border 0.1s ease, background-color 0.1s ease;
+        }
+
+        &__singleButton.isOpen {
+            border: 1px solid $mainGreen;
+            background-color: $white;
+        }
+
+        &__singleButton.isError {
+            border: 1px solid $red;
         }
 
         &__hiddenInput {
@@ -99,6 +137,7 @@
 
         &__input {
             /*padding-bottom: 0;*/
+            cursor: pointer;
 
             &--nested {
                 width: 30%;
@@ -121,13 +160,10 @@
             &--hidden {
                 opacity: 0;
             }
-        }
-
-        &__input {
-            cursor: pointer;
 
             input {
                 cursor: inherit;
+                width: 100%;
             }
         }
 
