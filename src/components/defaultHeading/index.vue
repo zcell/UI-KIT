@@ -50,7 +50,7 @@
         render() {
             return (
                 <div class="defaultHeading">
-                    <h1 class="h1">{this.title}</h1>
+                    <h1 class="defaultHeading__h1 h1">{this.title}</h1>
 
                     <div class={`defaultHeading__headBox`}>
                         {this.$slots.heading && <div class="defaultHeading__headSlotItems">{this.$slots.heading}</div>}
@@ -69,10 +69,11 @@
                             )}
 
                             {this.clientUrl && (
-                                <router-link
+                                <a
                                     class="defaultHeading__btn editBtn--headingBtn"
                                     title="Перейти на сайт"
-                                    to={this.clientUrl}
+                                    href={this.clientUrl}
+                                    rel="nofollow"
                                     target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="defaultHeading__btnIcon">
                                         <path
@@ -81,7 +82,7 @@
                                             d="M14.9 16.3l-.6-1.1-.4-.5c-.3-.7-.2-1 .4-2l.1-.2c.5-.9.6-1.7.6-2.4V9c.2-.8 1.8-1 2.7-1 .2.6.3 1.2.3 1.9a8 8 0 01-3.1 6.3M10 2a8 8 0 011.8.2c-.2.4-.4.7-.8 1l-.7.4c-.6.4-1.4.9-1.8 1.7-.7 1.2-.7 2.3-.7 3.3 0 1.4 0 2.2-1 2.9-1.3 1-3.4.5-4.7 0A8 8 0 012 10a8 8 0 018-8m0-2a10 10 0 100 20 10 10 0 000-20"
                                         />
                                     </svg>
-                                </router-link>
+                                </a>
                             )}
 
                             <a
@@ -123,6 +124,11 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+
+        &__h1 {
+            margin: 0;
+            padding: 0;
+        }
 
         &__headBox {
             display: flex;

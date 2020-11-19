@@ -1,5 +1,4 @@
 <script>
-    import ProxyComponent from './proxyComponent';
     import {getConfirmAlert} from '../sweetAlert/index.js';
     import DefaultHeading from '../defaultHeading/index';
     import Tabs from '../tabs/index';
@@ -9,7 +8,6 @@
         name: 'BatchModule',
 
         components: {
-            ProxyComponent,
             DefaultHeading,
             Tabs,
             Tab,

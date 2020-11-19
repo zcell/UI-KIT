@@ -196,6 +196,8 @@
             justify-content: flex-start;
             align-items: stretch;
             flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
 
             overflow: auto;
             list-style: none;

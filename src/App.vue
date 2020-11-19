@@ -3,7 +3,7 @@
         <batch-module :tabs="batchTabs" />
         <custom-input v-model="inputValue" @focus="log('focus')" />
 
-        <default-heading :title="'Title'" :cache-params="{status: true}" client-url="123" />
+        <default-heading :title="'Title'" :cache-params="{url: ''}" client-url="https://yandex.ru" />
 
         <main-nav :items="navItems">
             <template #logo>
@@ -42,7 +42,6 @@
     import TextEditor from '@/components/textEditor/index';
     import DefaultHeading from '@/components/defaultHeading/index';
     import MainNav from '@/components/mainNav/index';
-    import Test from '@/components/test';
 
     const defaultParams = {
         url: 'https://api.presentation.food.true-false.ru/api/admin/shop/orders/738',
@@ -268,7 +267,6 @@
             MainNav,
             ActionBlock,
             BatchModule,
-            Test
         },
 
         data() {
@@ -278,7 +276,7 @@
                     {
                         id: '1',
                         name: 'Test',
-                        component: Test,
+                        component: CustomTextarea,
                         listeners: {
                             input: e => (this.inputValue = e),
                             update: null,
