@@ -198,10 +198,12 @@
             justify-content: center;
             align-items: center;
             margin: 1px;
-            border-radius: 2px;
 
             background: $white;
             transition: all ease 0.15s;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
 
             &--button:hover {
                 background: $additionalGreen;
@@ -230,6 +232,16 @@
 
             &:hover {
                 background: $white;
+            }
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &[type='number'] {
+                -moz-appearance: textfield;
             }
         }
 

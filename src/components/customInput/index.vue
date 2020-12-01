@@ -192,7 +192,7 @@
         render() {
             return (
                 <div class={`input ${this.getClasses}`} onClick={() => this.$emit('click')}>
-                    {!['tel', 'number', 'file', 'date'].includes(this.type) && (
+                    {!['tel', 'counter', 'file', 'date'].includes(this.type) && (
                         <label>
                             {this.getLabel(this.label)}
                             <div class="input__wrapper">
@@ -236,7 +236,7 @@
                             <transition name="fade">{this.getError(this.error)}</transition>
                         </label>
                     )}
-                    {this.type === 'number' && (
+                    {this.type === 'counter' && (
                         <div>
                             {this.getLabel(this.label)}
                             <counter

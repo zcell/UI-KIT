@@ -33,11 +33,13 @@
                         .then(resp => {
                             if (resp.status === 200) {
                                 this.$emit('cacheClearedSuccess');
+                            } else {
+                                this.$emit('cacheClearedError');
                             }
                         })
                         .catch(err => {
-                            this.$emit('cacheClearedError');
                             console.log(err);
+                            this.$emit('cacheClearedError');
                         });
                 }
             },

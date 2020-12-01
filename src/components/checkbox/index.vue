@@ -25,12 +25,19 @@
             },
         },
 
+        computed: {
+            classNames() {
+                let classes = 'checkbox';
+                classes += this.$attrs.value ? ' is-active' : '';
+                classes += this.type ? ` checkbox--${this.type}` : '';
+                classes += this.disabled ? ` checkbox--disabled` : '';
+                return classes;
+            },
+        },
+
         render() {
             return (
-                <label
-                    class={`checkbox ${this.$attrs.value ? 'is-active' : ''} ${this.type ? 'checkbox--' + this.type : ''} ${
-                        this.disabled ? 'checkbox--disabled' : ''
-                    }`}>
+                <label class={this.classNames}>
                     <span class="checkbox__custom" />
 
                     <input

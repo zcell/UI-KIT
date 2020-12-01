@@ -145,25 +145,18 @@
     .mainNav {
         @import '../../assets/reset';
 
-        position: relative;
+        position: fixed;
+      left: 0;
+      top: 0;
         max-width: 90px;
         width: 90px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        align-items: center;
         background-color: $graySoft;
-        //min-height: 100vh;
+        min-height: 100vh;
         box-sizing: border-box;
-
-        &:before {
-            /*content: '';*/
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            min-height: 101vh;
-            background-color: $graySoft;
-        }
 
         &__home {
             display: flex;
@@ -177,11 +170,8 @@
         }
 
         &__wrapper {
-            width: inherit;
-            //position: fixed;
-            //top: 0;
+            width: 100%;
             background-color: $graySoft;
-            height: 300px;
         }
 
         &__logo {
@@ -195,13 +185,13 @@
             fill: currentColor;
             text-align: center;
 
-          svg  {
-            width: 100%;
-            height: 100%;
+            svg {
+                width: 100%;
+                height: 100%;
 
-            fill: currentColor;
-            color: inherit;
-          }
+                fill: currentColor;
+                color: inherit;
+            }
         }
 
         &__list {

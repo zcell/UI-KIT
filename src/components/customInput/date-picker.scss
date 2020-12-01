@@ -178,10 +178,12 @@ $input-hover-border-color: $mainGreen;
 
 .#{$namespace}-btn-icon-left,
 .#{$namespace}-btn-icon-double-left {
+    color: #747678;
     float: left;
 }
 .#{$namespace}-btn-icon-right,
 .#{$namespace}-btn-icon-double-right {
+    color: #747678;
     float: right;
 }
 
@@ -191,6 +193,7 @@ $input-hover-border-color: $mainGreen;
 
 .#{$namespace}-calendar-decade-separator {
     margin: 0 2px;
+
     &:after {
         content: '~';
     }
@@ -208,7 +211,7 @@ $input-hover-border-color: $mainGreen;
         }
         &.active {
             color: $calendar-active-color;
-            background-color: $calendar-active-background-color;
+            background-color: $primary-color;
         }
         &.in-range {
             color: $calendar-in-range-color;
@@ -269,6 +272,10 @@ $input-hover-border-color: $mainGreen;
 }
 
 .#{$namespace}-table-date {
+    th {
+        color: $primary-color;
+    }
+
     td,
     th {
         height: 32px;
@@ -347,7 +354,7 @@ $input-hover-border-color: $mainGreen;
             background-color: $time-hover-background-color;
         }
         &.active {
-            color: $time-active-color;
+            color: $primary-color;
             background-color: $time-active-background-color;
             font-weight: 700;
         }
@@ -369,7 +376,7 @@ $input-hover-border-color: $mainGreen;
         background-color: $time-hover-background-color;
     }
     &.active {
-        color: $time-active-color;
+        color: $primary-color;
         background-color: $time-active-background-color;
         font-weight: 700;
     }
