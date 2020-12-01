@@ -32,16 +32,20 @@ export default {
 
     data() {
         return {
-            curItem: {...this.item, selected: false}
+            curItem: this.item,
+            status: false,
+            selected: false,
         };
     },
 
     methods: {
         edit() {
             this.$emit('deleteItem', this.currItemCopy);
+            this.change();
         },
 
-        selectItem() {
+        selectItem(e) {
+            this.$emit('selectedItem', {item: this.currItemCopy, selected: e});
             this.change();
         },
 
@@ -52,6 +56,7 @@ export default {
 
         delete() {
             this.$emit('deleteItem', this.currItemCopy);
+            this.change();
         },
 
         change() {
@@ -80,8 +85,8 @@ export default {
     computed: {
         classNames() {
             let classes = 'customListItem';
-            classes += this.curItem.selected ? ' is-selected' : '';
-            classes += this.curItem.status ? '' : ' is-disabled';
+            classes += this.selected ? ' is-selected' : '';
+            classes += this.status ? '' : ' is-disabled';
             return classes;
         },
 
@@ -93,8 +98,8 @@ export default {
     render() {
         return (
             <li class={this.classNames} >
-                <checkbox class="customListItem__selectItem" v-model={this.curItem.selected}
-                          onInput={() => this.selectItem()}/>
+                <checkbox class="customListItem__selectItem" v-model={this.selected}
+                          onInput={e => this.selectItem(e)}/>
 
                 <div class="customListItem__properties">
                     {Array.isArray(this.contents) &&
@@ -121,7 +126,7 @@ export default {
                         <checkbox
                             class="customListItem__status"
                             type="roll"
-                            v-model={(this.curItem || {}).status}
+                            v-model={this.status}
                             onInput={() => this.changeStatus()}
                         />
                     )}

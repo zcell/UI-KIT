@@ -7761,7 +7761,7 @@ _extends(DatePicker, {
           return _this3.$emit('click');
         }
       }
-    }, [!['tel', 'number', 'file', 'date'].includes(this.type) && h("label", [this.getLabel(this.label), h("div", {
+    }, [!['tel', 'counter', 'file', 'date'].includes(this.type) && h("label", [this.getLabel(this.label), h("div", {
       "class": "input__wrapper"
     }, [h("input", {
       "class": "input__input",
@@ -7825,7 +7825,7 @@ _extends(DatePicker, {
       "attrs": {
         "name": "fade"
       }
-    }, [this.getError(this.error)])]), this.type === 'number' && h("div", [this.getLabel(this.label), h("counter", {
+    }, [this.getError(this.error)])]), this.type === 'counter' && h("div", [this.getLabel(this.label), h("counter", {
       "class": "input__counter",
       "attrs": {
         "min": this.min,
@@ -26192,11 +26192,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var btn = (component.exports);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
-
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/checkbox/index.vue?vue&type=script&lang=js&
-
 
 /* harmony default export */ var checkboxvue_type_script_lang_js_ = ({
   name: 'Checkbox',
@@ -26220,12 +26216,21 @@ var es_array_concat = __webpack_require__("99af");
       }
     }
   },
+  computed: {
+    classNames: function classNames() {
+      var classes = 'checkbox';
+      classes += this.$attrs.value ? ' is-active' : '';
+      classes += this.type ? " checkbox--".concat(this.type) : '';
+      classes += this.disabled ? " checkbox--disabled" : '';
+      return classes;
+    }
+  },
   render: function render() {
     var _this = this;
 
     var h = arguments[0];
     return h("label", {
-      "class": "checkbox ".concat(this.$attrs.value ? 'is-active' : '', " ").concat(this.type ? 'checkbox--' + this.type : '', " ").concat(this.disabled ? 'checkbox--disabled' : '')
+      "class": this.classNames
     }, [h("span", {
       "class": "checkbox__custom"
     }), h("input", {
@@ -26424,6 +26429,9 @@ var customTextarea_component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var customTextarea = (customTextarea_component.exports);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__("99af");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
 var es_array_find = __webpack_require__("7db0");
 
@@ -28314,11 +28322,13 @@ var getConfirmAlert = /*#__PURE__*/function () {
                 }).then(function (resp) {
                   if (resp.status === 200) {
                     _this.$emit('cacheClearedSuccess');
+                  } else {
+                    _this.$emit('cacheClearedError');
                   }
                 }).catch(function (err) {
-                  _this.$emit('cacheClearedError');
-
                   console.log(err);
+
+                  _this.$emit('cacheClearedError');
                 });
 
               case 3:

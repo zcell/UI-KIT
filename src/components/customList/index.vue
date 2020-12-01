@@ -48,12 +48,12 @@
         },
 
         methods: {
-            updateItem() {
-                console.log(this.items);
+            updateItem(newItem) {
+                console.log(newItem);
             },
 
-            updateItemBySlot() {
-              console.log(this.items);
+            updateItemBySlot(newItem) {
+              console.log(newItem);
             }
         },
 
@@ -73,10 +73,10 @@
                                     }
                                     props={this.listItemProps}
                                     contents={this.listItemContents}
-                                    onUpdateItem={itemByComponent => this.updateItem()}
+                                    onUpdateItem={itemByComponent => this.updateItem(itemByComponent)}
                                     onStatusChange={e => this.$emit('statusChange', e)}
                                     onDeleteItem={() => this.$emit('deleteItem', index)}>
-                                    {this.listItemSlot({...item, onUpdateItem: (itemBySlot) => this.updateItemBySlot()})}
+                                    {this.listItemSlot({...item, onUpdateItem: itemBySlot => this.updateItemBySlot(itemBySlot)})}
                                 </custom-list-item>
                             );
                         })}
